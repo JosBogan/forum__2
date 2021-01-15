@@ -18,9 +18,12 @@ userSchema
     }
   })
 
-userSchema.methods.validatePassword = function validatePassword(password) {
+// userSchema.methods.validatePassword = (password) => bcrypt.compareSync(password, this.password)
+
+userSchema.methods.validatePassword = function(password) {
   return bcrypt.compareSync(password, this.password)
-}
+} 
+  
 
 userSchema
   .virtual('passwordConfirmation')

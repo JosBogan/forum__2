@@ -18,4 +18,7 @@ router.route('/users/:id')
   .get(users.index)
   .delete(users.destroy)
 
+router.route('/login')
+  .post(users.login)
+
 module.exports = router

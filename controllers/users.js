@@ -1,7 +1,6 @@
 const user = require('../models/user')
-const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { find } = require('../models/user')
+const { secret } = require('../config/environment')
 
 function index(req, res) {
   user
@@ -11,7 +10,6 @@ function index(req, res) {
 }
 
 function register(req, res) {
-  console.log('request body', req.body)
   user
     .create(req.body)
     .then(createdUser => res.status(201).json(createdUser))
@@ -22,17 +20,20 @@ function register(req, res) {
     )
 }
 function login(req, res) {
+  // console.log(req.body)
   user
-    .find({ email: req.body.email })
+    .findOne({ email: req.body.email })
     .then(foundUser => {
-      if (!foundUser || !user.validatePassword(req.bosy.password)) {
+
+      if (!foundUser || !foundUser.validatePassword(req.body.password)) {
+
         return res.status(401).json({ message: 'Unauthorised' })
       }
-
+      console.log('getting here')
+      const token = jwt.sign({ sub: foundUser._id }, secret, { expiresIn: '6h' })
+      return res.status(200).json({ message: 'Welcome Back', token })
     })
-
-  //compare the encrypted passwords
-  // if they match, then return with a json webtoken
+    .catch(err => res.status(400).json(err))
 }
 
 function show(req, res) {
@@ -57,4 +58,4 @@ function destroy(req, res) {
 }
 
 
-module.exports = { index, register, show, destroy }
+module.exports = { index, register, login, show, destroy }
