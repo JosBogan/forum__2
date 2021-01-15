@@ -12,7 +12,7 @@ router.route('/boards/:id')
 
 router.route('/users')
   .get(users.index)
-  .post(users.create)
+  .post(users.register)
 
 router.route('/users/:id')
   .get(users.index)
