@@ -21,6 +21,7 @@ function create(req, res) {
 function show(req, res) {
   board
     .findById(req.params.id)
+    .populate('posts')
     .then(foundboard => {
       if (!foundboard) throw new Error('Not Found')
       return res.status(200).json(foundboard)

@@ -1,14 +1,23 @@
 const router = require('express').Router()
+
 const boards = require('../controllers/boards')
 const users = require('../controllers/users')
+const posts = require('../controllers/posts')
+
+const secureRoute = require('../lib/secureRoute')
 
 router.route('/boards')
   .get(boards.index)
-  .post(boards.create)
+  .post(secureRoute, boards.create)
 
 router.route('/boards/:id')
   .get(boards.show)
-  .delete(boards.destroy)
+  .delete(secureRoute, boards.destroy)
+  .post(secureRoute, posts.create)
+
+router.route('/posts/:id')
+  .post(secureRoute, posts.comment)
+  .get(posts.show)
 
 router.route('/users')
   .get(users.index)
@@ -16,7 +25,7 @@ router.route('/users')
 
 router.route('/users/:id')
   .get(users.index)
-  .delete(users.destroy)
+  .delete(secureRoute, users.destroy)
 
 router.route('/login')
   .post(users.login)
