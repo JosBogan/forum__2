@@ -15,9 +15,15 @@ router.route('/boards/:id')
   .delete(secureRoute, boards.destroy)
   .post(secureRoute, posts.create)
 
-router.route('/posts/:id')
+router.route('/posts/:postId')
   .post(secureRoute, posts.comment)
   .get(posts.show)
+
+router.route('/posts/:postId/upvote')
+  .get(secureRoute, posts.upvote)
+
+router.route('/comments/:commentId')
+  .post(secureRoute, posts.comment)
 
 router.route('/users')
   .get(users.index)

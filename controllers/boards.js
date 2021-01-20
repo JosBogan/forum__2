@@ -39,4 +39,5 @@ function destroy(req, res) {
     .then(() => res.sendStatus(204))
 }
 
+
 module.exports = { index, create, show, destroy }
