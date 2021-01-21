@@ -3,17 +3,6 @@ import axios from 'axios'
 
 function FrontPage() {
 
-  // const [boards, setBoards] = useState([])
-
-  // useEffect(() => {
-  //   setBoards(getBoards())
-  // }, [])
-
-  // const getBoards = async () => {
-  //   const { data } = await axios.get('/api/boards')
-  //   setBoards(data)
-  // }
-
   const [ boards, setBoards ] = useState([])
 
   useEffect(() => {

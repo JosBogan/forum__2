@@ -1,14 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
 import { Switch, BrowserRouter, Route } from 'react-router-dom'
 
-import FrontPage from './FrontPage'
+import './styles/main.css'
+
+import FrontPage from './components/FrontPage'
+import Navbar from './components/Navbar'
+
 
 class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
+        <Navbar />
         <main>
           <Switch>
             <Route exact path="/" component={FrontPage}/>
@@ -24,11 +28,3 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 )
-
-// async function getDinoData() {
-//   const response = await fetch('/api/boards')
-//   const data = await response.json()
-//   console.log(data)
-// }
-
-// getDinoData()
