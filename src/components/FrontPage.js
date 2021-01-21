@@ -3,7 +3,7 @@ import axios from 'axios'
 
 function FrontPage() {
 
-  const [ boards, setBoards ] = useState([])
+  const [ posts, setPosts ] = useState([])
 
   useEffect(() => {
     getData()
@@ -11,17 +11,17 @@ function FrontPage() {
 
   
   const getData = async () => {
-    const { data } = await axios.get('/api/boards')
+    const { data } = await axios.get('/api/posts')
     console.log(data)
-    setBoards(data)
+    setPosts(data)
   }
 
 
 
   return (
     <div>
-      {console.log(boards)}
-      {boards.map(cheese => <div key={cheese._id}>{cheese.name}</div>)}
+      {console.log(posts)}
+      {posts.map(post => <div key={post._id}>{post.title}</div>)}
     </div>
   )
 }

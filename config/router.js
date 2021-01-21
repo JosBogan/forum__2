@@ -16,6 +16,9 @@ router.route('/boards/:id')
   .delete(secureRoute, boards.destroy)
   .post(secureRoute, posts.create)
 
+router.route('/posts')
+  .get(posts.index)
+
 router.route('/posts/:postId')
   .post(secureRoute, posts.comment)
   .get(posts.show)

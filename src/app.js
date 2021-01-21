@@ -6,6 +6,7 @@ import './styles/main.css'
 
 import FrontPage from './components/FrontPage'
 import Navbar from './components/Navbar'
+import AuthPage from './components/auth/AuthPage'
 
 
 class App extends React.Component {
@@ -16,7 +17,7 @@ class App extends React.Component {
         <main>
           <Switch>
             <Route exact path="/" component={FrontPage}/>
-
+            <Route path="/auth" component={AuthPage}/>
           </Switch>
         </main>
       </BrowserRouter>

@@ -4,6 +4,18 @@ const board = require('../models/board')
 
 const commentModel = require('../models/comment')
 
+function index(req, res) {
+  post
+    .find()
+    .then(allPosts => {
+      return allPosts.sort((a, b) =>  b.createdAt.getTime() - a.createdAt.getTime())
+    })
+    .then(sortedPosts => {
+      res.status(200).json(sortedPosts)
+    })
+    .catch(err => res.status(401).json(err))
+}
+
 function show(req, res) {
   post
     .findById(req.params.postId)
@@ -134,4 +146,4 @@ function comment(req, res) {
   //   .catch(err => res.status(401).json(err))
 }
 
-module.exports = { create, comment, show, upvote, downvote }
+module.exports = { create, comment, show, upvote, downvote, index }
