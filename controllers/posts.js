@@ -47,13 +47,35 @@ function upvote(req, res) {
     .findById(req.params.postId)
     .then(foundPost => {
       if (!foundPost) throw new Error('Not Found')
-      console.log(typeof(foundPost.upvotes[0]))
-      if (foundPost.upvotes.find(item => item._id === req.currentUser._id)) {
-        foundPost.upvotes.filter(item => item._id !== req.currentUser._id)
+
+      if (foundPost.upvotes.find(item => item._id.toString() === req.currentUser._id.toString())) {
+        foundPost.upvotes = foundPost.upvotes.filter(item => item._id.toString() !== req.currentUser._id.toString())
       } else {
         foundPost.upvotes.push(req.currentUser)
-        if (foundPost.downvotes.find(item => item._id === req.currentUser._id)) {
-          foundPost.downvotes.filter(item => item._id !== req.currentUser._id)
+        if (foundPost.downvotes.find(item => item._id.toString() === req.currentUser._id.toString())) {
+          foundPost.downvotes = foundPost.downvotes.filter(item => item._id.toString() !== req.currentUser._id.toString())
+        }
+      }
+      return foundPost.save()
+    })
+    .then(() => res.sendStatus(200))
+    .catch(err => res.status(401).json(err))
+}
+
+function downvote(req, res) {
+
+  //! Needs a lot of fixing
+  post
+    .findById(req.params.postId)
+    .then(foundPost => {
+      if (!foundPost) throw new Error('Not Found')
+
+      if (foundPost.downvotes.find(item => item._id.toString() === req.currentUser._id.toString())) {
+        foundPost.downvotes = foundPost.downvotes.filter(item => item._id.toString() !== req.currentUser._id.toString())
+      } else {
+        foundPost.downvotes.push(req.currentUser)
+        if (foundPost.upvotes.find(item => item._id.toString() === req.currentUser._id.toString())) {
+          foundPost.upvotes = foundPost.upvotes.filter(item => item._id.toString() !== req.currentUser._id.toString())
         }
       }
       return foundPost.save()
@@ -112,4 +134,4 @@ function comment(req, res) {
   //   .catch(err => res.status(401).json(err))
 }
 
-module.exports = { create, comment, show, upvote }
+module.exports = { create, comment, show, upvote, downvote }
