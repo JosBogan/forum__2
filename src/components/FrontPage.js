@@ -23,7 +23,7 @@ function FrontPage() {
   return (
     <div>
       {posts.map(post => (
-        <PostCard key={post._id} post={post}/>
+        <PostCard key={post._id} post={post} getData={getData}/>
       )
       )}
     </div>

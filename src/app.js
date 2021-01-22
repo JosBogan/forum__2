@@ -7,6 +7,7 @@ import './styles/main.css'
 import FrontPage from './components/FrontPage'
 import Navbar from './components/Navbar'
 import AuthPage from './components/auth/AuthPage'
+import Post from './components/post/Post'
 
 
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={FrontPage}/>
             <Route path="/auth" component={AuthPage}/>
+            <Route path="/posts/:id" component={Post}/>
           </Switch>
         </main>
       </BrowserRouter>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 
 import '../../styles/postcard.css'
@@ -7,7 +8,7 @@ import '../../styles/postcard.css'
 import Auth from '../../lib/auth'
 import UpDownVote from './UpDownVote'
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, getData }) => {
 
   const vote = async (vote) => {
     // console.log(post)
@@ -17,6 +18,7 @@ const PostCard = ({ post }) => {
       }
     })
     console.log(res.data)
+    getData()
   }
 
   return (
@@ -26,12 +28,14 @@ const PostCard = ({ post }) => {
         downvotes={post.downvotes.length}
         vote={vote}  
       />
-      <div className="post_content">
-        <h2>
-          {post.title}
-        </h2>
-        <div>{post.board.name} - {post.user.username}</div>
-      </div>
+      <Link to={`/posts/${post._id}`}>
+        <div className="post_content">
+          <h2>
+            {post.title}
+          </h2>
+          <div>{post.board.name} - {post.user.username}</div>
+        </div>
+      </Link>
       {console.log(post)}
     </div>
   )
