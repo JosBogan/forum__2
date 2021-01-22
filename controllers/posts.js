@@ -7,7 +7,10 @@ const commentModel = require('../models/comment')
 function index(req, res) {
   post
     .find()
+    .populate('user')
+    .populate('board')
     .then(allPosts => {
+      console.log(allPosts)
       return allPosts.sort((a, b) =>  b.createdAt.getTime() - a.createdAt.getTime())
     })
     .then(sortedPosts => {

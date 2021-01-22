@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import PostCard from './postcard/PostCard'
+
 function FrontPage() {
 
   const [ posts, setPosts ] = useState([])
@@ -20,8 +22,10 @@ function FrontPage() {
 
   return (
     <div>
-      {console.log(posts)}
-      {posts.map(post => <div key={post._id}>{post.title}</div>)}
+      {posts.map(post => (
+        <PostCard key={post._id} post={post}/>
+      )
+      )}
     </div>
   )
 }
