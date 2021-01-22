@@ -1,14 +1,22 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
+
 import '../../styles/postcard.css'
 
+import Auth from '../../lib/auth'
 import UpDownVote from './UpDownVote'
 
 const PostCard = ({ post }) => {
 
   const vote = async (vote) => {
-    const res = await axios.get(`/api/posts/${post.id}/${vote}`)
+    // console.log(post)
+    const res = await axios.get(`/api/posts/${post._id}/${vote}`, {
+      headers: {
+        Authorization: `Bearer ${Auth.getToken()}`
+      }
+    })
+    console.log(res.data)
   }
 
   return (
