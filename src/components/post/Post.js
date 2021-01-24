@@ -12,7 +12,6 @@ const Post = (props) => {
 
   const getData = async () => {
     const { data } = await axios.get(`/api/posts/${props.match.params.id}`)
-    console.log(data)
     setPostData(data)
   }
 

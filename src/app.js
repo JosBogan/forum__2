@@ -8,6 +8,7 @@ import FrontPage from './components/FrontPage'
 import Navbar from './components/Navbar'
 import AuthPage from './components/auth/AuthPage'
 import Post from './components/post/Post'
+import LoginRegister from './components/auth/LoginRegister'
 
 
 class App extends React.Component {
@@ -15,12 +16,17 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Navbar />
-        <main>
-          <Switch>
-            <Route exact path="/" component={FrontPage}/>
-            <Route path="/auth" component={AuthPage}/>
-            <Route path="/posts/:id" component={Post}/>
-          </Switch>
+        <main className="main">
+          <section className="content_section">
+            <Switch>
+              <Route exact path="/" component={FrontPage}/>
+              <Route path="/auth" component={AuthPage}/>
+              <Route path="/posts/:id" component={Post}/>
+            </Switch>
+          </section>
+          <aside className="sidebar_section">
+            <LoginRegister />
+          </aside>
         </main>
       </BrowserRouter>
     )

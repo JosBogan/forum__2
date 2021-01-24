@@ -16,3 +16,16 @@ h1, h2, h3, h4, h5, h6 {
 ul {
   list-style-type: none;
 }
+
+.main {
+  display: flex;
+}
+
+.content_section {
+  flex: 2
+}
+
+.sidebar_section {
+  flex: 1;
+  background: blue;
+}

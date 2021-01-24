@@ -11,7 +11,6 @@ import UpDownVote from './UpDownVote'
 const PostCard = ({ post, getData }) => {
 
   const vote = async (vote) => {
-    // console.log(post)
     const res = await axios.get(`/api/posts/${post._id}/${vote}`, {
       headers: {
         Authorization: `Bearer ${Auth.getToken()}`
