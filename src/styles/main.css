@@ -27,5 +27,17 @@ ul {
 
 .sidebar_section {
   flex: 1;
-  background: blue;
+  /* background: blue; */
+}
+
+.modal_background {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.466);
+  top: 0;
+  left: 0;
 }

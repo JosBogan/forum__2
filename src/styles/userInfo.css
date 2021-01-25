@@ -1,0 +1,10 @@
+.sidebar_logged {
+  /* display: flex;
+  justify-content: center; */
+  text-align: center;
+}
+
+.logout {
+  display: block;
+  margin: auto
+}
