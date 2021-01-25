@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 import Auth from '../../lib/auth'
 
-const LoginRegister = () => {
+const LoginRegister = ({ setLoggedIn }) => {
 
   const initState = {
     username: '',
@@ -27,8 +27,8 @@ const LoginRegister = () => {
     const data = register ? userData : { email: userData.email, password: userData.password }
     const res = await axios.post('/api/login', data)
     Auth.setToken(res.data.token)
-    setUserData({ ...initState })
-    // props.history.push('/')
+    setLoggedIn(true)
+    // setUserData({ ...initState })
   }
 
   const switchToRegister = (e) => {
@@ -38,7 +38,7 @@ const LoginRegister = () => {
 
   return (
     <div className="auth_wrapper">
-      {console.log(userData)}
+      {/* {console.log(userData)} */}
       <div className="auth_container">
         <form onSubmit={onSubmit}>
           {register &&
