@@ -6,7 +6,7 @@ import './styles/main.css'
 import Auth from './lib/auth'
 
 import FrontPage from './components/FrontPage'
-import Navbar from './components/Navbar'
+import Navbar from './components/navbar/Navbar'
 import AuthPage from './components/auth/AuthPage'
 import Post from './components/post/Post'
 import LoginRegister from './components/sidebar/LoginRegister'

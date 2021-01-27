@@ -11,7 +11,7 @@ const Modal = ({ setModal, Component }) => {
       className="modal_background"
       onClick={closeModal}
     >
-      <Component />
+      <Component setModal={setModal}/>
     </div>
   )
 
