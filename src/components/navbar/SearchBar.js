@@ -1,6 +1,9 @@
+import { set } from 'mongoose'
 import React from 'react'
 
-const SearchBar = ({ searchChange, searchValue }) => {
+const SearchBar = ({ searchChange, searchValue, setFocused }) => {
+
+
 
   return (
     <input 
@@ -9,6 +12,8 @@ const SearchBar = ({ searchChange, searchValue }) => {
       name="search"
       onChange={searchChange}
       value={searchValue}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
     />
   )
 }

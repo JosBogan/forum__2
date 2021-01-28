@@ -9,6 +9,24 @@ function index(req, res) {
     .catch(err => res.status(404).json(err))
 }
 
+function search(req, res) {
+  board
+    .find()
+    .then(foundBoards => {
+      const filteredBoards = foundBoards.filter(board => board.name.toLowerCase().includes(req.params.name.toLowerCase()))
+      filteredBoards.sort((a, b) => {
+        if (a.name.toLowerCase().startsWith(req.params.name.toLowerCase())) return -1
+        else if (b.name.toLowerCase().startsWith(req.params.name.toLowerCase())) return 1
+        return 0
+      })
+      return filteredBoards
+    })
+    .then(sortedBoards => {
+      return res.status(200).json(sortedBoards)
+    })
+    .catch(err => res.status(404).json(err))
+}
+
 function create(req, res) {
   board
     .create(req.body)
@@ -40,4 +58,4 @@ function destroy(req, res) {
 }
 
 
-module.exports = { index, create, show, destroy }
+module.exports = { index, create, show, destroy, search }

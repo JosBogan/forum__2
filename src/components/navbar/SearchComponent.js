@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import SearchBar from './SearchBar'
@@ -8,6 +8,11 @@ const SearchComponent = () => {
 
   const [search, setSearch] = useState('')
   const [boardData, setBoardData] = useState([])
+  const [focused, setFocused] = useState(false)
+
+  useEffect(() => {
+    getData()
+  }, [search])
 
   const searchChange = (e) => {
     console.log(e.target.value)
@@ -15,8 +20,12 @@ const SearchComponent = () => {
   }
 
   const getData = async () => {
-    const { data } = await axios.get('/api/boards')
-    console.log(data)
+    if (!search) {
+      setBoardData([])
+      return
+    }
+    const { data } = await axios.get(`/api/boards/search/${search}`)
+    setBoardData(data)
   }
 
 
@@ -26,8 +35,12 @@ const SearchComponent = () => {
       <SearchBar 
         searchChange={searchChange} 
         searchValue={search}
+        setFocused={setFocused}
       />
-      <SearchOptions />
+      <SearchOptions 
+        boardData={boardData} 
+        focused={focused}
+      />
     </div>
   )
 }

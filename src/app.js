@@ -11,6 +11,7 @@ import AuthPage from './components/auth/AuthPage'
 import Post from './components/post/Post'
 import LoginRegister from './components/sidebar/LoginRegister'
 import UserInfo from './components/sidebar/UserInfo'
+import BoardShow from './components/boards/BoardShow'
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
             <Route exact path="/" component={FrontPage}/>
             <Route path="/auth" component={AuthPage}/>
             <Route path="/posts/:id" component={Post}/>
+            <Route path="/boards/:id" component={BoardShow}/>
           </Switch>
         </section>
         <aside className="sidebar_section">

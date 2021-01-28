@@ -10,11 +10,15 @@ const secureRoute = require('../lib/secureRoute')
 router.route('/boards')
   .get(boards.index)
   .post(secureRoute, boards.create)
+  
+router.route('/boards/search/:name')
+  .get(boards.search)
 
 router.route('/boards/:id')
   .get(boards.show)
   .delete(secureRoute, boards.destroy)
   .post(secureRoute, posts.create)
+
 
 router.route('/posts')
   .get(posts.index)
