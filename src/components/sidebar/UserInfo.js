@@ -19,7 +19,6 @@ const UserInfo = ({ setLoggedIn }) => {
 
   const getUserData = async () => {
     const { data } = await axios.get(`/api/users/${Auth.getUserId}`)
-    console.log(data)
     setUserData(data[0])
   }
 
@@ -35,7 +34,6 @@ const UserInfo = ({ setLoggedIn }) => {
   return (
     <div className="sidebar_logged">
       <section>
-        {console.log(userData.username)}
         {userData.username}
         <button onClick={logout} className="logout">LOGOUT</button>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Modal = ({ setModal, Component }) => {
+const Modal = ({ setModal, Component, misc }) => {
 
   const closeModal = () => {
     setModal(false)
@@ -11,7 +11,8 @@ const Modal = ({ setModal, Component }) => {
       className="modal_background"
       onClick={closeModal}
     >
-      <Component setModal={setModal}/>
+      {console.log('misc', misc)}
+      <Component setModal={setModal} misc={misc}/>
     </div>
   )
 

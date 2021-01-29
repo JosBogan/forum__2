@@ -28,7 +28,7 @@ const AuthPage = (props) => {
     const data = register ? userData : { email: userData.email, password: userData.password }
     const res = await Axios.post('/api/login', data)
     Auth.setToken(res.data.token)
-    console.log(props.history.push('/'))
+    props.history.push('/')
   }
 
 

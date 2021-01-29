@@ -16,7 +16,6 @@ const PostCard = ({ post, getData }) => {
         Authorization: `Bearer ${Auth.getToken()}`
       }
     })
-    console.log(res.data)
     getData()
   }
 
@@ -35,7 +34,6 @@ const PostCard = ({ post, getData }) => {
           <div>{post.board.name} - {post.user.username}</div>
         </div>
       </Link>
-      {console.log(post)}
     </div>
   )
 }

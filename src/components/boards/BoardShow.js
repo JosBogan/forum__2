@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
+import PostCard from '../postcard/PostCard'
+import Modal from '../misc/Modal'
+import NewPost from '../post/NewPost'
+
+import '../../styles/board.css'
+
 const BoardShow = (props) => {
 
   const [boardData, setBoardData] = useState({})
+  const [modal, setModal] = useState(false)
 
   useEffect(() => {
     getData()
@@ -14,9 +21,23 @@ const BoardShow = (props) => {
     setBoardData(data)
   }
 
+  const openModal = () => {
+    setModal(true)
+  }
+
   return (
     <div>
-      <h1>{boardData.name}</h1>
+      <h1 className="board_header">{boardData.name}</h1>
+      <div>
+        <button onClick={openModal}>New Post</button>
+      </div>
+      <section>
+        {console.log(boardData.posts)}
+        {boardData.posts && boardData.posts.map(post => (
+          <PostCard key={post._id} post={post} getData={getData}/>
+        ))}
+      </section>
+      {modal && <Modal setModal={setModal} Component={NewPost} misc={{ props, boardData, getData }}/>}
     </div>
   )
 }

@@ -24,7 +24,6 @@ class Auth {
     const payload = this.getPayload()
     if (!payload) return false
     const now = Math.round(Date.now() / 1000)
-    console.log(payload)
     return now < payload.exp
   }
 

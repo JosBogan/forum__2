@@ -1,9 +1,15 @@
-import { set } from 'mongoose'
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 
-const SearchBar = ({ searchChange, searchValue, setFocused }) => {
+const SearchBar = ({ searchChange, searchValue, setOpen, location }) => {
 
+  const input = useRef(null)
 
+  useEffect(() => {
+    setOpen(false)
+    input.current.blur()
+  }, [location.pathname])
+  
 
   return (
     <input 
@@ -12,10 +18,11 @@ const SearchBar = ({ searchChange, searchValue, setFocused }) => {
       name="search"
       onChange={searchChange}
       value={searchValue}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
+      ref={input}
+      onFocus={() => setOpen(true)}
+      onBlur={() => setOpen(false)}
     />
   )
 }
 
-export default SearchBar
+export default withRouter(SearchBar)

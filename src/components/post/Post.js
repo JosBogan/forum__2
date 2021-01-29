@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
+import '../../styles/post.css'
+
 const Post = (props) => {
 
   const [postData, setPostData] = useState({})
@@ -17,7 +19,7 @@ const Post = (props) => {
 
   return (
     <div>
-      <h1>{postData.title}</h1>
+      <h1 className="post_title">{postData.title}</h1>
       {postData.comments && postData.comments.map(comment => (
         <div key={comment._id}>{comment.text}</div>
       ))}

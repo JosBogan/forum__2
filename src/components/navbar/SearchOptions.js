@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const SearchOptions = ({ boardData, focused }) => {
+const SearchOptions = ({ boardData, open }) => {
 
   return (
-    <div className={`search_options ${focused && boardData.length > 0 ? 'search_options_open' : 'search_options_closed'}`}>
-      {console.log('search_options' && boardData.length > 0 ? 'search_options_open' : 'search_options_closed')}
+    <div className={`search_options ${open && boardData.length > 0 ? 'search_options_open' : 'search_options_closed'}`}>
       <ul className="search_option_list">
         {boardData.map(board => (
           <Link 
