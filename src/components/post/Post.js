@@ -18,7 +18,6 @@ const Post = (props) => {
 
   const getData = async () => {
     const { data } = await axios.get(`/api/posts/${props.match.params.id}`)
-    console.log(data)
     setPostData(data)
   }
 
@@ -30,6 +29,7 @@ const Post = (props) => {
       }
     })
     getData()
+    setCommentData('')
   }
 
   const onChangeComment = (e) => {
@@ -40,7 +40,10 @@ const Post = (props) => {
     <div>
       <Link to={`/boards/${postData.board}`}><div className="board_banner"></div></Link>
       <h1 className="post_title">{postData.title}</h1>
-      <form onSubmit={comment}>
+      <div>
+        <p>{postData.text}</p>
+      </div>
+      {Auth.isAuthenticated() && <form onSubmit={comment}>
         <label htmlFor="comment">Comment</label>
         <textarea 
           name="comment"
@@ -50,7 +53,7 @@ const Post = (props) => {
         <div>
           <input type="submit"/>
         </div>
-      </form>
+      </form>}
       {postData.comments && postData.comments.map(comment => (
         <div key={comment._id}>{comment.text}</div>
       ))}
