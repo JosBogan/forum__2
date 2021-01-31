@@ -29,6 +29,7 @@ const BoardShow = (props) => {
 
   return (
     <div>
+      {console.log(boardData)}
       <h1 className="board_header">{boardData.name}</h1>
       <div>
         {Auth.isAuthenticated() && <button onClick={openModal}>New Post</button>}

@@ -39,10 +39,16 @@ function create(req, res) {
 function show(req, res) {
   board
     .findById(req.params.id)
-    .populate('posts')
-    .then(foundboard => {
-      if (!foundboard) throw new Error('Not Found')
-      return res.status(200).json(foundboard)
+    .populate({ path: 'posts', populate: { path: 'board', select: 'name' } })
+    .populate({ path: 'posts', populate: { path: 'user', select: 'username' } })
+    .then(foundBoard => {
+      if (!foundBoard) throw new Error('Not Found')
+      foundBoard.posts.sort((a, b) =>  b.createdAt.getTime() - a.createdAt.getTime())
+      return foundBoard
+    })
+    .then(sortedBoard => {
+      console.log(sortedBoard)
+      return res.status(200).json(sortedBoard)
     })
     .catch(err => res.status(404).json(err))
 }
