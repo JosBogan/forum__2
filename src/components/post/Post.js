@@ -36,9 +36,12 @@ const Post = (props) => {
     setCommentData(e.target.value)
   }
 
+  if (Object.keys(postData).length < 1) return null
   return (
     <div>
-      <Link to={`/boards/${postData.board}`}><div className="board_banner"></div></Link>
+      {console.log(postData)}
+      <Link to={`/boards/${postData.board._id}`}><div className="board_banner">
+        <h2>{postData.board.name}</h2></div></Link>
       <h1 className="post_title">{postData.title}</h1>
       <div>
         <p>{postData.text}</p>

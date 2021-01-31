@@ -7,6 +7,8 @@ import NewPost from '../post/NewPost'
 
 import '../../styles/board.css'
 
+import Auth from '../../lib/auth'
+
 const BoardShow = (props) => {
 
   const [boardData, setBoardData] = useState({})
@@ -29,10 +31,9 @@ const BoardShow = (props) => {
     <div>
       <h1 className="board_header">{boardData.name}</h1>
       <div>
-        <button onClick={openModal}>New Post</button>
+        {Auth.isAuthenticated() && <button onClick={openModal}>New Post</button>}
       </div>
       <section>
-        {console.log(boardData.posts)}
         {boardData.posts && boardData.posts.map(post => (
           <PostCard key={post._id} post={post} getData={getData}/>
         ))}

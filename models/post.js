@@ -24,4 +24,15 @@ const postSchema = new mongoose.Schema({
   timestamps: true
 })
 
+// postSchema
+//   .set('toJSON', {
+//     virtuals: true,
+//     transform(doc, json) {
+//       doc
+//         .populate('board')
+//         .then(item => console.log(item.board))
+//     }
+//   })
+
+
 module.exports = mongoose.model('Post', postSchema)

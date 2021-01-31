@@ -23,8 +23,10 @@ function show(req, res) {
   post
     .findById(req.params.postId)
     .populate('comments')
+    .populate('board', 'name')
     .then(foundPost => {
       if (!foundPost) throw new Error('Not Found')
+      console.log(foundPost)
       return res.status(200).json(foundPost)
     })
     .catch(err => res.status(401).json(err))

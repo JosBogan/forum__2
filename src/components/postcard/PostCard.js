@@ -21,17 +21,21 @@ const PostCard = ({ post, getData }) => {
 
   return (
     <div className="post_container">
+
+      {console.log(post.upvotes.includes(Auth.getUserId()) || post.downvotes.includes(Auth.getUserId()))}
       <UpDownVote 
         upvotes={post.upvotes.length} 
         downvotes={post.downvotes.length}
-        vote={vote}  
+        vote={vote}
+        upvoted={post.upvotes.includes(Auth.getUserId())}
+        downvoted={post.downvotes.includes(Auth.getUserId())}
       />
       <Link to={`/posts/${post._id}`}>
         <div className="post_content">
           <h2>
             {post.title}
           </h2>
-          <div>{post.board.name} - {post.user.username}</div>
+          <div><Link className="postcard_link" to={`/boards/${post.board._id}`}>{post.board.name}</Link> - {post.user.username}</div>
         </div>
       </Link>
     </div>

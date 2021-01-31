@@ -1,6 +1,9 @@
 .board_banner {
   height: 200px;
-  background-color: green;
+  background-color: #efefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .post_title {
