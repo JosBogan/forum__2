@@ -23,11 +23,19 @@ const LoginRegister = ({ setLoggedIn }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    console.log('here')
     const data = register ? userData : { email: userData.email, password: userData.password }
-    const res = await axios.post('/api/login', data)
-    Auth.setToken(res.data.token)
-    setLoggedIn(true)
+    let res
+    if (register) {
+      console.log('register')
+      res = await axios.post('/api/users', data)
+      setRegister(false)
+      setUserData({ ...initState })
+    } else {
+      console.log('Login')
+      res = await axios.post('/api/login', data)
+      Auth.setToken(res.data.token)
+      setLoggedIn(true)
+    }
     // setUserData({ ...initState })
   }
 
@@ -38,7 +46,6 @@ const LoginRegister = ({ setLoggedIn }) => {
 
   return (
     <div className="auth_wrapper">
-      {/* {console.log(userData)} */}
       <div className="auth_container">
         <form onSubmit={onSubmit}>
           {register &&

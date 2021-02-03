@@ -18,7 +18,10 @@ const UserInfo = ({ setLoggedIn }) => {
   }, [])
 
   const getUserData = async () => {
-    const { data } = await axios.get(`/api/users/${Auth.getUserId}`)
+
+    // FIX THIS !!!
+    const { data } = await axios.get(`/api/users/${Auth.getUserId()}`)
+    console.log(data)
     setUserData(data[0])
   }
 
