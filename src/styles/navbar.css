@@ -17,6 +17,7 @@
 .nav_home_link {
   height: 100%;
   display: flex;
+  padding: 0 20px;
   align-items: center;
   transition: all 0.1s;
 }

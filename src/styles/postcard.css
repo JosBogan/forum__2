@@ -17,6 +17,7 @@
 }
 
 .vote_container {
+  /* background-color: blue; */
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -22,7 +22,7 @@ const UserInfo = ({ setLoggedIn }) => {
     // FIX THIS !!!
     const { data } = await axios.get(`/api/users/${Auth.getUserId()}`)
     console.log(data)
-    setUserData(data[0])
+    setUserData(data)
   }
 
   const logout = () => {

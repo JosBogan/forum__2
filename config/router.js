@@ -47,7 +47,7 @@ router.route('/users')
   .post(users.register)
 
 router.route('/users/:id')
-  .get(users.index)
+  .get(users.show)
   .delete(secureRoute, users.destroy)
 
 router.route('/login')
