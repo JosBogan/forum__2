@@ -27,8 +27,8 @@ const PostCard = ({ post, getData }) => {
         upvotes={post.upvotes.length} 
         downvotes={post.downvotes.length}
         vote={vote}
-        upvoted={post.upvotes.includes(Auth.getUserId())}
-        downvoted={post.downvotes.includes(Auth.getUserId())}
+        upvoted={post.upvotes.includes(Auth.getUserId()) && Auth.isAuthenticated()}
+        downvoted={post.downvotes.includes(Auth.getUserId()) && Auth.isAuthenticated()}
       />
       <Link to={`/posts/${post._id}`}>
         <div className="post_content">
